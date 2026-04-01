@@ -1,13 +1,38 @@
 const usuariosService = require("../services/tarefasService");
 
-async function listarTarefas(req, res) {
+async function criarTarefa(req, res) {
 
-    const tarefas = await tarefasService.listartarefas();
+    const { id, id_usuario, descricao, setor, prioridade, data_cadastro, status } = req.body;
 
-    res.json(tarefas);
+    const novaTarefa = await tarefasService.criarTarefa(id, id_usuario, descricao, setor, prioridade, data_cadastro, status);
+
+    res.json(novaTarefa);
 
 }
 
+async function editarTarefa(req, res) {
+    const { id } = req.params;
+    const { id_usuario, descricao, setor, prioridade, data_cadastro, status } = req.body;
+    const tarefaAtualizada = await tarefasService.editarTarefa(id, id_usuario, descricao, setor, prioridade, data_cadastro, status);
+    res.json(tarefaAtualizada);
+}
+
+async function listarTarefas(req, res) {
+    const tarefas = await tarefasService.listartarefas();
+    res.json(tarefas);
+}
+
+
+async function deletarTarefa(req, res) {
+    const { id } = req.params;
+    await tarefasService.deletarTarefa(id);
+    res.json({ message: "Tarefa deletada com sucesso" });
+}
+
+
 module.exports = {
-    listarTarefas
+    criarTarefa,
+    editarTarefa,
+    listarTarefas,
+    deletarTarefa
 };
