@@ -7,8 +7,8 @@ async function listarUsuarios(req, res) {
 }
 
 async function criarUsuario(req, res) {
-    const { id, nome, email, senha } = req.body;
-    const novoUsuario = await usuariosService.criarUsuario(id, nome, email, senha);
+    const { nome, email, senha } = req.body;
+    const novoUsuario = await usuariosService.criarUsuario(nome, email, senha);
     res.json(novoUsuario);
 }   
 

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SAEP — Tarefas</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">SAEP</a>
+  <a href="index.html">Início</a>
+  <a href="usuarios.html">Usuários</a>
+  <a href="tarefas.html" class="active">Tarefas</a>
+</nav>
+
+<div class="page">
+  <div class="page-header">
+    <div>
+      <h1>Tarefas</h1>
+      <p>Acompanhamento por status</p>
+    </div>
+    <button class="btn btn-primary" onclick="openModal()">+ Nova tarefa</button>
+  </div>
+
+  <div class="kanban">
+    <div class="kanban-col">
+      <div class="kanban-col-header">
+        <h3>À Fazer</h3>
+        <span class="col-count" id="count-a-fazer">0</span>
+      </div>
+      <div class="kanban-cards" id="col-a-fazer">
+        <div class="empty">Carregando…</div>
+      </div>
+    </div>
+
+    <div class="kanban-col">
+      <div class="kanban-col-header">
+        <h3>Fazendo</h3>
+        <span class="col-count" id="count-fazendo">0</span>
+      </div>
+      <div class="kanban-cards" id="col-fazendo">
+        <div class="empty">Carregando…</div>
+      </div>
+    </div>
+
+    <div class="kanban-col">
+      <div class="kanban-col-header">
+        <h3>Feito</h3>
+        <span class="col-count" id="count-feito">0</span>
+      </div>
+      <div class="kanban-cards" id="col-feito">
+        <div class="empty">Carregando…</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal criar/editar tarefa -->
+<div class="overlay" id="overlay" onclick="closeModal(event)">
+  <div class="modal">
+    <h2 id="modal-title">Nova tarefa</h2>
+    <input type="hidden" id="edit-id"/>
+
+    <div class="form-group">
+      <label>Descrição</label>
+      <textarea id="f-descricao" rows="2" placeholder="Descreva a tarefa…" style="resize:vertical"></textarea>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Setor</label>
+        <input type="text" id="f-setor" placeholder="Ex: TI, RH…"/>
+      </div>
+      <div class="form-group">
+        <label>Prioridade</label>
+        <select id="f-prioridade">
+          <option value="baixa">Baixa</option>
+          <option value="media" selected>Média</option>
+          <option value="alta">Alta</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Data</label>
+        <input type="date" id="f-data"/>
+      </div>
+      <div class="form-group">
+        <label>Status</label>
+        <select id="f-status">
+          <option value="À fazer">À Fazer</option>
+          <option value="Fazendo">Fazendo</option>
+          <option value="Feito">Feito</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Responsável</label>
+      <select id="f-usuario"></select>
+    </div>
+
+    <div class="form-actions">
+      <button class="btn btn-ghost" onclick="closeModal()">Cancelar</button>
+      <button class="btn btn-primary" onclick="salvarTarefa()">Salvar</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="tarefas.js"></script>
+</body>
+</html>

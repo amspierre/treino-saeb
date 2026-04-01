@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SAEP — Usuários</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">SAEP</a>
+  <a href="index.html">Início</a>
+  <a href="usuarios.html" class="active">Usuários</a>
+  <a href="tarefas.html">Tarefas</a>
+</nav>
+
+<div class="page">
+  <div class="page-header">
+    <div>
+      <h1>Usuários</h1>
+      <p>Membros cadastrados no sistema</p>
+    </div>
+    <button class="btn btn-primary" onclick="openModal()">+ Novo usuário</button>
+  </div>
+
+  <div class="user-table">
+    <table>
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Email</th>
+          <th>Desde</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="usuarios-tbody">
+        <tr><td colspan="4"><div class="empty">Carregando…</div></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Modal criar/editar usuário -->
+<div class="overlay" id="overlay" onclick="closeModal(event)">
+  <div class="modal">
+    <h2 id="modal-title">Novo usuário</h2>
+    <input type="hidden" id="edit-id"/>
+    <div class="form-group">
+      <label>Nome</label>
+      <input type="text" id="f-nome" placeholder="Nome completo"/>
+    </div>
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" id="f-email" placeholder="email@exemplo.com"/>
+    </div>
+    <div class="form-group">
+      <label>Senha</label>
+      <input type="password" id="f-senha" placeholder="••••••••"/>
+    </div>
+    <div class="form-actions">
+      <button class="btn btn-ghost" onclick="closeModal()">Cancelar</button>
+      <button class="btn btn-primary" onclick="salvarUsuario()">Salvar</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="usuarios.js"></script>
+</body>
+</html>
